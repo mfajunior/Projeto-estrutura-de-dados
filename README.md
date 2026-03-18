@@ -2,7 +2,7 @@
 Este projeto foi desenvolvido como parte de um trabalho acadêmico para a disciplina de Estrutura de Dados. O objetivo é gerenciar uma rotina de tarefas utilizando uma Lista Encadeada Simples com Alocação Dinâmica de Memória utilizando a linguagem de programação C
 
 💻 Conceitos Aplicados
-O projeto demonstra o domínio dos seguintes conceitos de baixo nível em C:
+O projeto demonstra o domínio dos seguintes conceitos de baixo nível em C: \n
 Structs e Tipos Abstratos de Dados (TAD).
 Ponteiros: Manipulação de endereços de memória para encadeamento.
 Gestão de Memória: Uso de malloc() para crescimento dinâmico e free() para evitar memory leaks.

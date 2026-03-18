@@ -30,13 +30,12 @@ int prioridade: Escala de importância (1 a 5).<br>
 float horasEstimadas: Tempo previsto para conclusão.<br>
 bool concluida: Status atual da tarefa.<br>
 
-📋 Como Executar
-1. Clone o repositório:
-
+📋 Como Executar<br>
+**1. Clone o repositório:**<br>
 git clone https://github.com/mfajunior/Projeto-estrutura-de-dados
 
-2. Compile o código (usando GCC):
+**2. Compile o código (usando GCC):**<br>
 gcc main.c -o sistema_tarefas
 
-3. Execute o programa:
+**3. Execute o programa:**<br>
 ./sistema_tarefas

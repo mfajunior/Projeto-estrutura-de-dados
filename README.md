@@ -1,6 +1,6 @@
 <!-- Cabeçalho com Logo e Identificação -->
 <div align="center">
-  <img src="https://www.usf.edu.br/galeria/imagem/857501308365111.png" alt="Logo USF" width="200"/>
+ <img src="./logo-usf-footer.webp" alt="Logo USF" width="250"/>
   <h1># Projeto-estrutura-de-dados</h1>
   <p>
     <b>Universidade São Francisco — Campus Bragança Paulista</b><br>

@@ -1,41 +1,71 @@
-# Projeto-estrutura-de-dados
-Este projeto foi desenvolvido como parte de um trabalho acadêmico para a disciplina de Estrutura de Dados. O objetivo é gerenciar uma rotina de tarefas utilizando uma Lista Encadeada Simples com Alocação Dinâmica de Memória utilizando a linguagem de programação C
+<!-- Cabeçalho com Logo e Identificação -->
+<div align="center">
+  <img src="https://www.usf.edu.br/galeria/imagem/857501308365111.png" alt="Logo USF" width="200"/>
+  <h1># Projeto-estrutura-de-dados</h1>
+  <p>
+    <b>Universidade São Francisco — Campus Bragança Paulista</b><br>
+    <i>Engenharia de Computação</i>
+  </p>
+</div>
 
-💻 Conceitos Aplicados<br>
-O projeto demonstra o domínio dos seguintes conceitos de baixo nível em C: <br>
-Structs e Tipos Abstratos de Dados (TAD).<br>
-Ponteiros: Manipulação de endereços de memória para encadeamento.<br>
-Gestão de Memória: Uso de malloc() para crescimento dinâmico e free() para evitar memory leaks.<br>
-Lógica de Busca e Remoção: Algoritmos de travessia de lista linear.<br>
+<hr />
 
-📝 Sistema de Gerenciamento de Tarefas (Lista Encadeada em C)<br>
-Este projeto foi desenvolvido como parte de um trabalho acadêmico para a disciplina de Estrutura de Dados. O objetivo é gerenciar uma rotina de tarefas utilizando uma Lista Encadeada Simples com Alocação Dinâmica de Memória.<br>
+<!-- Contexto Acadêmico -->
+<div align="justify">
+  <h2>🎓 Contexto do Projeto</h2>
+  <p>
+    Este projeto foi desenvolvido como parte de um <b>trabalho acadêmico</b> para a disciplina de <b>Estrutura de Dados</b> na <b>Universidade São Francisco (USF)</b>. 
+  </p>
+  <p>
+    O objetivo central é gerenciar um estacionamento utilizando uma <b>Lista Encadeada Simples</b> com <b>Alocação Dinâmica de Memória</b> na linguagem de programação <b>C</b>. O software permite o controle total sobre os nós da lista (inserção, busca, edição e remoção), garantindo a eficiência no uso da memória RAM.
+  </p>
+</div>
 
-🚀 Funcionalidades<br>
-O sistema permite organizar a rotina acadêmica/pessoal com as seguintes operações:<br>
+<br />
 
-Incluir Tarefa: Adiciona uma nova tarefa ao início da lista (Alocação com malloc).<br>
-Mostrar Todos: Percorre a lista e exibe todos os dados formatados.<br>
-Buscar: Localiza uma tarefa específica através do seu ID único.<br>
-Retirar: Remove uma tarefa da lista e libera o espaço na memória (free).<br>
-Liberar Lista: Limpa toda a memória alocada antes de encerrar o programa.<br>
+<!-- Funcionalidades em Tabela HTML -->
+<h2>🚀 Funcionalidades</h2>
+<table width="100%">
+  <tr>
+    <td width="50%"><b>📥 Cadastro Dinâmico</b></td>
+    <td>Inserção de veículos (ID, Placa, Cor, Nome) via <code>malloc</code>.</td>
+  </tr>
+  <tr>
+    <td><b>📊 Relatório Geral</b></td>
+    <td>Listagem de todos os nós ativos na lista encadeada.</td>
+  </tr>
+  <tr>
+    <td><b>✏️ Alteração de Registro</b></td>
+    <td>Busca por ID e atualização de dados em tempo real.</td>
+  </tr>
+  <tr>
+    <td><b>🗑️ Gestão de Memória</b></td>
+    <td>Remoção de elementos com <code>free()</code> para evitar vazamentos de memória.</td>
+  </tr>
+</table>
 
-🛠️ Estrutura do Objeto (Tarefa)<br>
-Cada nó da lista armazena um objeto Tarefa com 6 campos distintos:<br>
+<br />
 
-int id: Identificador único.<br>
-char descricao[50]: O que deve ser feito.<br>
-char disciplina[30]: Contexto ou matéria relacionada.<br>
-int prioridade: Escala de importância (1 a 5).<br>
-float horasEstimadas: Tempo previsto para conclusão.<br>
-bool concluida: Status atual da tarefa.<br>
+## 🛠️ Tecnologias e Conceitos
+<ul>
+  <li><code>Linguagem C</code></li>
+  <li><code>Ponteiros e Referências</code></li>
+  <li><code>Alocação Dinâmica (malloc/free)</code></li>
+  <li><code>Lista Encadeada Simples</code></li>
+</ul>
 
-📋 Como Executar<br>
-**1. Clone o repositório:**<br>
-git clone https://github.com/mfajunior/Projeto-estrutura-de-dados
+<br />
 
-**2. Compile o código (usando GCC):**<br>
-gcc main.c -o sistema_tarefas
+<!-- Como Rodar -->
 
-**3. Execute o programa:**<br>
-./sistema_tarefas
+<!-- Seção de Clonagem do Repositório -->
+<div id="clonar-projeto">
+  <h2>📥 Como Clonar o Projeto</h2>
+  <p>Para obter uma cópia local deste projeto acadêmico da <b>USF</b>, execute o comando abaixo no seu terminal:</p>
+  
+  <pre><code>git clone https://github.com/mfajunior/Projeto-estrutura-de-dados.git</code></pre>
+  
+  <p align="small">
+    <sub><i>Nota: Certifique-se de ter o <b>Git</b> instalado em sua máquina.</i></sub>
+  </p>
+</div>

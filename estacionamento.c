@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <windows.h>
 
 typedef struct estacionamento{
-  int id;
+	int id;
 	int vaga;                
-  char cor[10];    
-  char placa[8];   
-  char nome[20];
+	char cor[15];    
+	char placa[9];   
+	char nome[20];
 	bool tipo;               
 } estacionamento;
 
@@ -25,12 +26,13 @@ no* cria() {
 
 no* insere(no* database) {
     no* novo = (no*)malloc(sizeof(no));
+    system("cls");
     
 	printf("\n--- Cadastro da Vaga Ocupada ---\n");
     printf("ID: ");
     scanf("%i", &novo->carro.id);
     
-    printf("Qual a cor do carro?: ");
+    printf("Qual a cor do veiculo?: ");
     scanf("%s",&novo->carro.cor);
     
     printf("Qual a placa do veiculo? Digite no formato ""AAA-AAAA"": ");
@@ -46,18 +48,42 @@ no* insere(no* database) {
     scanf("%d", &novo->carro.tipo);
     
     novo->next = database;
-     system ("cls");
+    system ("cls");
 	return novo;
 }
 
 
-no* busca(no* database, int id_procurado) {
-    no* aux;
+no* altera(no* database, int id_procurado) {
+    no* aux = database;
+    
     for (aux = database; aux != NULL; aux = aux->next) {
-        if (aux->carro.id == id_procurado) return aux;
+        if (aux->carro.id == id_procurado){
+        	printf("\n--- Alterar informacoes da vaga ocupada ---\n");
+		    printf("ID a ser alterado: %i\n", aux->carro.id );
+		    
+		    printf("Qual a cor do veiculo?: ");
+		    scanf("%s",&aux->carro.cor);
+		    
+		    printf("Qual a placa do veiculo? Digite no formato ""AAA-AAAA"": ");
+		    scanf("%s",&aux->carro.placa);
+		    
+		    printf("Qual o numero da vaga?: ");
+		    scanf("%i", &aux->carro.vaga);
+		
+		    printf("Nome do aluno/funcionario que esta ocupando a vaga: ");
+		    scanf("%s", &aux->carro.nome);
+		
+		    printf("Digite 1 - Moto / 2 - Carro: ");
+		    scanf("%i", &aux->carro.tipo);
+		    
+		    system ("cls");
+			return aux;
+        	
+		};
     }
-    return NULL;
+    printf("ID %i nao encontrado! \n", id_procurado);
 }
+
 
 no* retira(no *database, int id_remover){
 	no* ant = NULL;
@@ -77,66 +103,79 @@ void imprime(no* database) {
     no* aux;
     
     if (database == NULL) {
-    	printf ("Banco de dados vazio! \n");
-		return;
-		}
-		
-    printf("\n--- database do estacionamento ---\n");
+        printf("\nEstacionamento vazio!\n");
+        return;
+    }
+
+    printf("\n--- Veiculos no estacionamento ---\n");
+    // O sinal de menos (-) alinha a esquerda. O numero define o tamanho da coluna.
+    printf("%-4s | %-10s | %-8s | %-12s | %-4s | %-5s\n", "ID", "Placa", "Cor", "Nome", "Vaga", "Tipo");
+    printf("------------------------------------------------------------\n");
+
     for (aux = database; aux != NULL; aux = aux->next) {
-        printf("Dados dos veiculos: \n %i - %s - %s - %s - %d",
+        printf("%-4i | %-10s | %-8s | %-12s | %-4i | %-5i\n",
                aux->carro.id, 
                aux->carro.placa, 
                aux->carro.cor, 
-               aux->carro.nome, 
-               aux->carro.tipo);
+               aux->carro.nome,
+			   aux->carro.vaga, 
+               aux->carro.id); // Usei id_tipo aqui como exemplo do 1 ou 2
     }
-    printf("-----------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
-void libera(no* database) {
+void* libera(no* database) {
     no* aux = database;
     while (aux != NULL) {
         no* temp = aux->next;
         free(aux);
         aux = temp;
     }
+    return NULL;
 }
 
 int main (){
-	int opcao=0;
-	int operador=0;
 	no* base = cria();
+	int opcao=0;
   
     while (opcao != 6) {
-        printf("\n1. Mostrar todos os dados \n2. Incluir dado \n3. Apagar dado \n4. Alterar dado \n5. Apagar tudo \n6. Sair\n Digite a opçao desejada: ");
-        scanf("%d", &opcao)
+        printf("\n1. Mostrar todos os dados \n2. Incluir dado \n3. Apagar dado \n4. Alterar dado \n5. Apagar tudo \n6. Sair\nDigite a opcao desejada: ");
+        scanf("%d", &opcao);
+        int retorno=0;
+		int operador=0;
+		
         switch (opcao) {
-            case 1:
+            case 1: // Ok
+                system("cls");	
                 imprime(base);
+                printf("Digite 1 para voltar ao menu principal:");
+                while(retorno!=1) scanf("%i", &retorno); 
+                system("cls");
                 break;
-            case 2:
+            case 2: // Ok
                 base = insere(base);
                 break;
-            case 3:
+            case 3: // OK
                 system ("cls");
                 imprime(base);
                 printf("Digite o ID para apagar: ");
                 scanf("%d", &operador);
                 base = retira(base, operador);
                 break;
-            case 4:
+            case 4: // OK
                 system ("cls");
                 imprime(base);
                 printf("Digite o ID para alterar: ");
                 scanf("%d", &operador);
-                altera(base, operador);
+                base = altera(base, operador);
                 break;
-            case 5:
-                libera(base);
+            case 5: // OK
+                base = libera(base);
                 printf("Todos os dados foram apagados!\n");
+                sleep(1);
+                system ("cls");
                 break;
             case 6:
-                libera(base);
                 break;
             default:
                 printf("Opcao invalida!\n");

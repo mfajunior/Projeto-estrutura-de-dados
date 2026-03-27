@@ -8,14 +8,14 @@ int contador_id = 1; // Variavel global para automatizar contador
 typedef struct estacionamento{
 	int id;
 	int vaga;                
-	char cor[15];    
+	char cor[15];
 	char placa[9];   
 	char nome[20];
 	char tipo[5];            
 } estacionamento;
 
 typedef struct no{
-    estacionamento carro;
+    estacionamento veiculo;
     struct no *next;
 } no;
 
@@ -52,24 +52,24 @@ no* insere(no* database) {
     system("cls");
     printf("\n--- Cadastro da Vaga ---\n");
     
-    novo->carro.id = contador_id;
+    novo->veiculo.id = contador_id;
     contador_id = contador_id+1;
     
     printf("Qual a cor do veiculo?: ");
-    scanf("%s", novo->carro.cor);
+    scanf("%s", novo->veiculo.cor);
     
     printf("Qual a placa do veiculo? (AAA-AAAA): ");
-    scanf("%s", novo->carro.placa);
+    scanf("%s", novo->veiculo.placa);
     
     printf("Qual o numero da vaga?: ");
-    scanf("%i", &novo->carro.vaga);
+    scanf("%i", &novo->veiculo.vaga);
 
     printf("Nome do proprietario: ");
-    scanf(" %[^\n]s", novo->carro.nome);
+    scanf(" %[^\n]s", novo->veiculo.nome);
     
     printf("Qual o tipo do veiculo (Carro/Moto)?: ");
-    scanf("%s", &novo->carro.tipo);
-
+    scanf("%s", &novo->veiculo.tipo);
+	
     novo->next = database;
     system("cls");
 	return novo;
@@ -79,19 +79,19 @@ no* altera(no* database, int id_procurado) {
     no* aux = database;
     
     for (aux = database; aux != NULL; aux = aux->next) {
-        if (aux->carro.id == id_procurado){
-        	printf("\n--- Alterar informacoes (ID: %i) ---\n", aux->carro.id);
+        if (aux->veiculo.id == id_procurado){
+        	printf("\n--- Alterar informacoes (ID: %i) ---\n", aux->veiculo.id);
 		    printf("Digite a cor: ");
-		    scanf("%s", aux->carro.cor);
+		    scanf("%s", aux->veiculo.cor);
 		    printf("Digite a placa: ");
-		    scanf("%s", aux->carro.placa);
+		    scanf("%s", aux->veiculo.placa);
 		    printf("Digite a vaga: ");
-		    scanf("%i", &aux->carro.vaga);
+		    scanf("%i", &aux->veiculo.vaga);
 		    printf("Digite o nome: ");
 		    setbuf(stdin, NULL);
-		    scanf(" %[^\n]s", aux->carro.nome);
+		    scanf(" %[^\n]s", aux->veiculo.nome);
 		    printf("Digite o tipo do veiculo (Carro/Moto): ");
-		    scanf("%s", aux->carro.tipo);
+		    scanf("%s", aux->veiculo.tipo);
 			return database;
 		}
     }
@@ -100,7 +100,7 @@ no* altera(no* database, int id_procurado) {
 }
 
 void reordenaID(no* database) {
-    if (database == NULL) { // Se a databaes estiver vazia, o valor do contador é setado como 1 referente ao primeiro ID
+    if (database == NULL) { // Se a database estiver vazia, o valor do contador é setado como 1 referente ao primeiro ID
         contador_id = 1;
         return;
     }
@@ -112,11 +112,11 @@ void reordenaID(no* database) {
         aux = aux->next;
     }
 
-    contador_id = total + 1; // Seta a variavel global contador_id para o próximo valor a ser inserido
+    contador_id = total + 1; // "Seta" a variavel global contador_id para o próximo valor a ser inserido
 
     aux = database; //aux recebe novamente a database para recomeçar o loop
     while (aux != NULL) { //como a estrutura de dados de uma lista encadeada é uma "pilha" o loop começa do maior valor para o menor
-        aux->carro.id = total;
+        aux->veiculo.id = total;
 		total = total -1; 
         aux = aux->next;
     }
@@ -126,7 +126,7 @@ no* retira(no *database, int id_remover){
 	no* ant = NULL;
 	no* aux = database;
 	
-	while (aux != NULL && aux->carro.id != id_remover){
+	while (aux != NULL && aux->veiculo.id != id_remover){
 	    ant = aux;
 	    aux = aux->next;
 	}
@@ -164,8 +164,8 @@ void imprime(no* database) {
     printf("---------------------------------------------------------------\n");
     for (aux = database; aux != NULL; aux = aux->next) {
         printf("%-4i | %-10s | %-8s | %-16s | %-4i | %-4s\n",
-               aux->carro.id, aux->carro.placa, aux->carro.cor, 
-               aux->carro.nome,aux->carro.vaga,aux->carro.tipo);
+               aux->veiculo.id, aux->veiculo.placa, aux->veiculo.cor, 
+               aux->veiculo.nome,aux->veiculo.vaga,aux->veiculo.tipo);
     }
     printf("---------------------------------------------------------------\n");
 }

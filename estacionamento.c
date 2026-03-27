@@ -10,7 +10,8 @@ typedef struct estacionamento{
 	int vaga;                
 	char cor[15];    
 	char placa[9];   
-	char nome[20];              
+	char nome[20];
+	char tipo[5];            
 } estacionamento;
 
 typedef struct no{
@@ -64,7 +65,10 @@ no* insere(no* database) {
     scanf("%i", &novo->carro.vaga);
 
     printf("Nome do proprietario: ");
-    scanf("%s", novo->carro.nome);
+    scanf(" %[^\n]s", novo->carro.nome);
+    
+    printf("Qual o tipo do veiculo (Carro/Moto)?: ");
+    scanf("%s", &novo->carro.tipo);
 
     novo->next = database;
     system("cls");
@@ -73,22 +77,25 @@ no* insere(no* database) {
 
 no* altera(no* database, int id_procurado) {
     no* aux = database;
+    
     for (aux = database; aux != NULL; aux = aux->next) {
         if (aux->carro.id == id_procurado){
         	printf("\n--- Alterar informacoes (ID: %i) ---\n", aux->carro.id);
-		    printf("Nova cor: ");
+		    printf("Digite a cor: ");
 		    scanf("%s", aux->carro.cor);
-		    printf("Nova placa: ");
+		    printf("Digite a placa: ");
 		    scanf("%s", aux->carro.placa);
-		    printf("Nova vaga: ");
+		    printf("Digite a vaga: ");
 		    scanf("%i", &aux->carro.vaga);
-		    printf("Novo nome: ");
-		    scanf("%s", aux->carro.nome);
+		    printf("Digite o nome: ");
+		    setbuf(stdin, NULL);
+		    scanf(" %[^\n]s", aux->carro.nome);
+		    printf("Digite o tipo do veiculo (Carro/Moto): ");
+		    scanf("%s", aux->carro.tipo);
 			return database;
 		}
     }
     printf("ID %i nao encontrado!\n", id_procurado);
-    system("cls");
     return database;
 }
 
@@ -153,14 +160,14 @@ void imprime(no* database) {
         return;
     }
     printf("\n        --- Veiculos no estacionamento ---\n");
-    printf("%-4s | %-10s | %-8s | %-12s | %-4s\n", "ID", "Placa", "Cor", "Nome", "Vaga");
-    printf("---------------------------------------------------\n");
+    printf("%-4s | %-10s | %-8s | %-16s | %-4s | %-4s\n", "ID", "Placa", "Cor", "Nome", "Vaga", "Tipo");
+    printf("---------------------------------------------------------------\n");
     for (aux = database; aux != NULL; aux = aux->next) {
-        printf("%-4i | %-10s | %-8s | %-12s | %-4i\n",
+        printf("%-4i | %-10s | %-8s | %-16s | %-4i | %-4s\n",
                aux->carro.id, aux->carro.placa, aux->carro.cor, 
-               aux->carro.nome, aux->carro.vaga);
+               aux->carro.nome,aux->carro.vaga,aux->carro.tipo);
     }
-    printf("---------------------------------------------------\n");
+    printf("---------------------------------------------------------------\n");
 }
 
 no* libera(no* database) {
@@ -176,7 +183,7 @@ no* libera(no* database) {
 }
 
 void retornamenu(){
-	printf("Retornando ao menu principal.");
+	printf("Retornando ao menu principal");
 	Sleep(400);
 	printf(".");
 	Sleep(400);
@@ -212,10 +219,11 @@ int main (){
                 imprime(base);
                 printf("\nDigite 1 para voltar: ");
                 while(retorno != 1) scanf("%i", &retorno); 
-                system("cls");
+                retornamenu();
                 break;
             case 2:
                 base = insere(base);
+                retornamenu();
                 break;
             case 3:
                 system("cls");
@@ -228,6 +236,7 @@ int main (){
                 printf("Digite o ID para apagar: ");
                 scanf("%d", &operador);
                 base = retira(base, operador);
+                retornamenu();
                 break;
             case 4:
                 system("cls");
@@ -240,6 +249,7 @@ int main (){
                 printf("Digite o ID para alterar: ");
                 scanf("%d", &operador);
                 base = altera(base, operador);
+                retornamenu();
                 break;
             case 5:
             	system("cls");
@@ -251,11 +261,14 @@ int main (){
 					base = libera(base);
 	                printf("Todos os dados foram apagados !");
 	                Sleep(1000);
+	                system("cls");
 				}
 				else retornamenu();			
 
                 break;
         }
     }
+    base = libera(base);
+    
     return 0;
 }

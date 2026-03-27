@@ -88,7 +88,6 @@ no* altera(no* database, int id_procurado) {
 		    printf("Digite a vaga: ");
 		    scanf("%i", &aux->veiculo.vaga);
 		    printf("Digite o nome: ");
-		    setbuf(stdin, NULL);
 		    scanf(" %[^\n]s", aux->veiculo.nome);
 		    printf("Digite o tipo do veiculo (Carro/Moto): ");
 		    scanf("%s", aux->veiculo.tipo);
